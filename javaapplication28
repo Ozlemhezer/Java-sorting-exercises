@@ -1,0 +1,55 @@
+package javaapplication28;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.ListIterator;
+
+class Book implements Comparable<Book>{
+    String name;
+    double price;
+    Book(String name,double price){
+        this.name=name;
+        this.price=price;
+    }
+    double totalPrice(){
+        return price+0.08*price;
+    }
+    @Override
+    public int compareTo(Book b){
+        return Double.compare(this.totalPrice(),b.totalPrice());
+    }
+    @Override
+    public String toString(){
+        return this.name+" "+" "+this.price+" "+this.totalPrice();
+    }
+   
+}
+
+public class JavaApplication28 {
+
+   
+    public static void main(String[] args) {
+       Book b1=new Book("Yüzyıllık Yalnızlık",100);
+       Book b2=new Book("İnsanlığımı Yitirirken",50);
+       Book b3=new Book("Savaş ve Barış",300);
+       Book b4=new Book("Sefiller",500);
+       LinkedList<Book> Books=new LinkedList<>();
+       Books.add(b1);
+       Books.add(b2);
+       Books.add(b3);
+       Books.add(b4);
+       Collections.sort(Books);
+       ListIterator<Book> itr= Books.listIterator();
+       System.out.println("Total fiyata göre sıralanmış kitap listesi");
+       while(itr.hasNext()){
+           System.out.println(itr.next());
+       }
+       System.out.println("Listenin ters sıralanışı");
+       while(itr.hasPrevious()){
+           System.out.println(itr.previous());
+       }
+       
+    }
+    
+}
